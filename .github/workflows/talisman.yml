@@ -11,7 +11,8 @@ jobs:
 
       - name: Install Talisman
         run: |
-          curl -fsSL https://raw.githubusercontent.com/thoughtworks/talisman/main/install.sh | bash
+          curl -L -o talisman.tar.gz https://github.com/thoughtworks/talisman/releases/latest/download/talisman_linux_amd64.tar.gz
+          tar xzf talisman.tar.gz
           sudo mv talisman /usr/local/bin/
 
       - name: Detect secrets with Talisman
