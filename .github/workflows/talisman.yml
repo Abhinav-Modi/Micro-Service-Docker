@@ -1,6 +1,6 @@
 name: Talisman Secrets Scan
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
  talisman-scan:
@@ -9,5 +9,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Talisman
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/thoughtworks/talisman/main/install.sh | bash
+          sudo mv talisman /usr/local/bin/
+
       - name: Detect secrets with Talisman
-        uses: carhartl/talisman-secrets-scan-action@v1.4.0
+        run: |
+          talisman --scan
