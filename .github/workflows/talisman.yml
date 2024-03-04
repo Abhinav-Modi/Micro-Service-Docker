@@ -1,0 +1,13 @@
+name: Talisman Secrets Scan
+
+on: [push]
+
+jobs:
+ talisman-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Detect secrets with Talisman
+        uses: carhartl/talisman-secrets-scan-action@v1.4.0
